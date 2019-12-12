@@ -17,12 +17,15 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
-    $date_time = $faker->date . '' . $faker->time;
+    $date_time = $faker->date . ' ' . $faker->time;
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
+        'activated' => true,
         'password' => bcrypt('secret'), // password
         'remember_token' => Str::random(10),
+        'created_at' => $date_time,
+        'updated_at' => $date_time
     ];
 });
